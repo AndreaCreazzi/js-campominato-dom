@@ -70,3 +70,6 @@ rispetto a quello che fa?
 1. Inserisco una variabile score nel js con valore 0
 1. Incremento score ogni volta che clicco in cella
 1. Creo una funzione per randomizzare 16 numeri dove andranno inserite le bombe
+1. Controllo se l'utente a calpestato la bomba
+1. **SE** l'utente ha calpestato la bomba cambia colore in rosso e ha perso
+1. **Altrimenti** l'utente a vinto non trovando la bomba

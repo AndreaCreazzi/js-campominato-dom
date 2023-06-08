@@ -18,6 +18,7 @@ const randomBombs = (totalBombs , cellsTotal) =>{
         }while(bombs.includes(randomNumbers))
         bombs.push(randomNumbers)
     }
+    console.log(bombs)
     return bombs
 }
 
@@ -52,9 +53,17 @@ for(let i = 1; i<=cellsTotal; i++){
     // celle in ascolto
     cellsElement.addEventListener(`click` , function(){
         if(!cellsElement.classList.contains(`safe`)){
-            scoreElement.innerHTML = ++score
+            scoreElement.innerHTML = score++
             cellsElement.classList.add(`safe`)
             console.log(cellsElement.innerText)
+        }
+        const hashitBomb = bombs.includes(i)
+
+        if(hashitBomb){
+            cellsElement.classList.add(`bombs`)
+            alert(`HAI PERSO, hai raggiunto : ${score} punti` )
+        }else if(score === totalScore){
+            alert(`HAI VINTO, ha raggiunto il punteggio massimo ${totalScore}`)
         }
     })
     })
