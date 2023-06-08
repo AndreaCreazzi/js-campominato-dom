@@ -9,7 +9,17 @@ const addCells = () =>{
 }
 
 // funzione bombe(random)
-
+const randomBombs = (totalBombs , cellsTotal) =>{
+    let bombs = []
+    while(bombs.length < totalBombs){
+        let randomNumbers;
+        do{
+        randomNumbers = Math.floor(Math.random() * cellsTotal) + 1       
+        }while(bombs.includes(randomNumbers))
+        bombs.push(randomNumbers)
+    }
+    return bombs
+}
 
 
 // elementi dal DOM
@@ -30,6 +40,7 @@ const cellsTotal = cells1 * cells2
 let score = 0
 let totalBombs = 16
 const totalScore = cellsTotal - totalBombs
+const bombs = randomBombs(totalBombs , cellsTotal)
 
 // ciclo di celle
 for(let i = 1; i<=cellsTotal; i++){
