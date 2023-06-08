@@ -17,10 +17,13 @@ console.log(`container`);
 
 const mode = document.getElementById(`mode`)
 
+const scoreElemento = document.getElementById(`score`);
+
 // preparazione html
 const cells1 = 10
 const cells2 = 10
 const cellsTotal = cells1 * cells2
+let score = 0
 
 // ciclo di celle
 for(let i = 1; i<=cellsTotal; i++){
@@ -31,7 +34,9 @@ for(let i = 1; i<=cellsTotal; i++){
     cellsElement.classList.add(`flex`)
     // celle in ascolto
     cellsElement.addEventListener(`click` , function(){
-        cellsElement.classList.toggle(`bg-yellow`)
+        cellsElement.classList.add(`bg-yellow`)
+        score++
+        scoreElemento.innerHTML = score
     })
     })
     containerElement.appendChild(cellsElement);

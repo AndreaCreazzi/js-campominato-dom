@@ -65,3 +65,7 @@ rispetto a quello che fa?
 <hr>
 
 ## Scaletta
+
+1. Preparo l'elemento score da prendere nel DOM
+1. inserisco una variabile score nel js con valore 0
+1. incremento score ogni volta che clicco in cella

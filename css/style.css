@@ -21,7 +21,7 @@ button{
 /* main */
 main{
     height: 795px;
-    background-color: #7fffd4;
+    background-color: lightslategray;
 }
 
 #container{
@@ -36,12 +36,12 @@ main{
 .cells{
     flex-basis: calc(100% / 10);
     padding: 30px;
-    border: 1px solid black;
+    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: red;
+    color: black;
     display: none;
 }
 
