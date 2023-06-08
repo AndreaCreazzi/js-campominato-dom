@@ -1,10 +1,19 @@
 // Controllo js
 console.log(`JS OK`)
 
+// elementi dal DOM
+const buttonElement = document.querySelector(`button`);
+
+const containerElement = document.getElementById(`container`);
+
+const mode = document.getElementById(`mode`)
+
+const scoreElement = document.getElementById(`score`);
+
 // funzione celle
-const addCells = () =>{
+const addCells = (numberCells) =>{
     let cellsElement = document.createElement(`div`);
-    cellsElement.classList.add(`cells`);
+    cellsElement.classList.add(`cells` , `cells-${numberCells}`);
     return cellsElement
 }
 
@@ -14,7 +23,7 @@ const randomBombs = (totalBombs , cellsTotal) =>{
     while(bombs.length < totalBombs){
         let randomNumbers;
         do{
-        randomNumbers = Math.floor(Math.random() * cellsTotal) + 1       
+            randomNumbers = Math.floor(Math.random() * cellsTotal) + 1       
         }while(bombs.includes(randomNumbers))
         bombs.push(randomNumbers)
     }
@@ -22,37 +31,36 @@ const randomBombs = (totalBombs , cellsTotal) =>{
     return bombs
 }
 
+// funzione del gioco
+const mineField = () =>{
 
-// elementi dal DOM
-const buttonElement = document.querySelector(`button`);
-console.log(`button`);
+    // elemento preso dal DOM
+    const modeElement = document.getElementById(`mode`)
 
-const containerElement = document.getElementById(`container`);
-console.log(`container`);
+    // svuoto il container
+    containerElement.innerHTML = ``
 
-const mode = document.getElementById(`mode`)
+    // preparazione elementi dento le celle
+    const cellsNumber =  parseInt(modeElement.value)
+    const cells1 = cellsNumber
+    const cells2 = cellsNumber
+    const cellsTotal = cells1 * cells2
+    let score = 0
+    let totalBombs = 16
+    const totalScore = cellsTotal - totalBombs
+    const bombs = randomBombs(totalBombs , cellsTotal)
 
-const scoreElement = document.getElementById(`score`);
-
-// preparazione html
-const cells1 = 10
-const cells2 = 10
-const cellsTotal = cells1 * cells2
-let score = 0
-let totalBombs = 16
-const totalScore = cellsTotal - totalBombs
-const bombs = randomBombs(totalBombs , cellsTotal)
-
-// ciclo di celle
-for(let i = 1; i<=cellsTotal; i++){
-    const cellsElement = addCells()
+    // ciclo di celle
+    for(let i = 1; i<=cellsTotal; i++){
+    const cellsElement = addCells(cellsNumber)
     cellsElement.innerText = i
-    // bottone in ascolto
-    buttonElement.addEventListener(`click` , function(){
+
+    // classe flex aggiunta
     cellsElement.classList.add(`flex`)
+
     // celle in ascolto
     cellsElement.addEventListener(`click` , function(){
-        if(!cellsElement.classList.contains(`safe`)){
+        if(!cellsElement.classList.contains(`safe`) && !bombs.includes(i)){
             scoreElement.innerHTML = score++
             cellsElement.classList.add(`safe`)
             console.log(cellsElement.innerText)
@@ -61,11 +69,15 @@ for(let i = 1; i<=cellsTotal; i++){
 
         if(hashitBomb){
             cellsElement.classList.add(`bombs`)
-            alert(`HAI PERSO, hai raggiunto : ${score} punti` )
+            alert(`HAI PERSO, hai raggiunto : ${score} punti`)
+            window.location.reload()
         }else if(score === totalScore){
             alert(`HAI VINTO, ha raggiunto il punteggio massimo ${totalScore}`)
         }
     })
-    })
+    // 
     containerElement.appendChild(cellsElement);
 }
+}
+// bottone in ascolto
+buttonElement.addEventListener(`click` , mineField)

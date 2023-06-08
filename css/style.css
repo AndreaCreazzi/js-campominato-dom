@@ -35,7 +35,6 @@ main{
 }
 
 .cells{
-    flex-basis: calc(100% / 10);
     padding: 30px;
     border: 1px solid white;
     display: flex;
@@ -44,6 +43,18 @@ main{
     cursor: pointer;
     color: black;
     display: none;
+}
+
+.cells-10{
+    flex-basis: calc(100% / 10);
+}
+
+.cells-9{
+    flex-basis: calc(100% / 9);
+}
+
+.cells-7{
+    flex-basis: calc(100% / 7);
 }
 
 .flex{
