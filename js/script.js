@@ -8,6 +8,10 @@ const addCells = () =>{
     return cellsElement
 }
 
+// funzione bombe(random)
+
+
+
 // elementi dal DOM
 const buttonElement = document.querySelector(`button`);
 console.log(`button`);
@@ -17,13 +21,15 @@ console.log(`container`);
 
 const mode = document.getElementById(`mode`)
 
-const scoreElemento = document.getElementById(`score`);
+const scoreElement = document.getElementById(`score`);
 
 // preparazione html
 const cells1 = 10
 const cells2 = 10
 const cellsTotal = cells1 * cells2
 let score = 0
+let totalBombs = 16
+const totalScore = cellsTotal - totalBombs
 
 // ciclo di celle
 for(let i = 1; i<=cellsTotal; i++){
@@ -34,9 +40,11 @@ for(let i = 1; i<=cellsTotal; i++){
     cellsElement.classList.add(`flex`)
     // celle in ascolto
     cellsElement.addEventListener(`click` , function(){
-        cellsElement.classList.add(`bg-yellow`)
-        score++
-        scoreElemento.innerHTML = score
+        if(!cellsElement.classList.contains(`safe`)){
+            scoreElement.innerHTML = ++score
+            cellsElement.classList.add(`safe`)
+            console.log(cellsElement.innerText)
+        }
     })
     })
     containerElement.appendChild(cellsElement);

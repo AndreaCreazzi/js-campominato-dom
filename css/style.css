@@ -18,6 +18,7 @@ button{
     border-radius: 50px;
     border: 2px solid black;
 }
+
 /* main */
 main{
     height: 795px;
@@ -49,9 +50,14 @@ main{
     display: flex;
 }
 
-.bg-yellow{
+.safe{
     background-color: yellow;
 }
+
+.bombs{
+    background-color: red;
+}
+
 /* footer */
 footer{
     height: 70px;
